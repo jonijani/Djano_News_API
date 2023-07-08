@@ -19,7 +19,16 @@ from django.urls import path,include
 from sky_app import views
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
-    #path('', include('sky_app.urls',namespace=''))
-    path('sky_app/', include('sky_app.urls')),
+
+    path('sky_app/', include('sky_app.urls',namespace='sky_app'))
 ]
+
+
+
+
+
+
+
+
+
+

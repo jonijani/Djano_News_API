@@ -48,7 +48,7 @@ def get_news_in_json_format(url):
 
 
 def get_url_link(keyword):
-    keyword = input('Enter city name in UK :')
+    #keyword = input('Enter city name in UK :')
     res_url = '/index.html'
     url = url = f"{BASE_URL}{keyword}{res_url}"
     print(url)

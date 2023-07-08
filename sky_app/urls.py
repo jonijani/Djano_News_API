@@ -15,16 +15,20 @@ Including another URLconf
 """
 
 from django.urls import path ,include
-#from .views import get_breaking_news
 from sky_app.views import get_breaking_news
 
-
-
+app_name = 'sky_app'
 
 urlpatterns = [
+   path('<str:keyword>/', get_breaking_news, name='get_breaking_news')
     
-    #path('/<str:keyword>/', get_breaking_news , name='get_breaking_news'),
-    path('/API/<str:keyword>/', get_breaking_news , name='get_breaking_news'),
 ]
+
+
+
+
+
+
+
 
 
