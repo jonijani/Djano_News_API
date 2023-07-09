@@ -3,8 +3,7 @@ from bs4 import BeautifulSoup
 import json
 
 
-# https://www.dailymail.co.uk/news/glasgow/index.html
-#BASE_URL = 'https://www.dailymail.co.uk/news/breaking_news/index.html'
+
 BASE_URL = 'https://www.dailymail.co.uk/news/'
 def get_res(url):
     res = requests.get(url)
@@ -47,17 +46,38 @@ def get_news_in_json_format(url):
     # return json_data
 
 
-def get_url_link(keyword):
+def get_url_link(keyword,page):
     #keyword = input('Enter city name in UK :')
     res_url = '/index.html'
-    url = url = f"{BASE_URL}{keyword}{res_url}"
+    if page :
+        page_no = f'?page={page}'
+    else:
+        page_no = ''
+
+    url = url = f"{BASE_URL}{keyword}{res_url}{page_no}"
     print(url)
     return url
 
 def get_search_result(keyword):
-    url = get_url_link(keyword)
-    json_data = get_news_in_json_format(url)
-    return json_data
+    count = 1
+    pre_page_data = ''
+    current_page_data = ''
+    json_data_list = []
+    while True:
+        url = get_url_link(keyword,count)
+        current_page_data = get_news_in_json_format(url)
+        print(pre_page_data)
+        print(current_page_data)
+        if current_page_data == pre_page_data:
+            break
+        json_data_list.extend(current_page_data)
+        count += 1
+        pre_page_data = current_page_data
+
+
+
+
+    return json_data_list
 
 
 
@@ -73,6 +93,7 @@ if __name__ == '__main__':
     # print(get_news_in_json_format(url))
 
     print(get_search_result('london'))
+
 
 
 
